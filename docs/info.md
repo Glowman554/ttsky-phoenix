@@ -9,9 +9,9 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-Phoenix v2 is an 8-bit CPU with 16 registers, GPIO, interrupts, a timer, and UART.
+[Phoenix v2](https://git.toxicfox.de/toxicfox/phoenix-v2) is an 8-bit CPU with 16 registers, GPIO, interrupts, a timer, and UART.
 At startup, it copies a 64 KiB program image from external flash into PSRAM,
-then executes from address zero. The memories use single-bit SPI.
+then executes from address zero. The memories use single-bit SPI. The original design can be found [here](https://git.toxicfox.de/toxicfox/phoenix-v2-rtl)
 
 ## How to test
 
