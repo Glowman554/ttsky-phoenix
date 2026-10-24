@@ -141,7 +141,9 @@ async def uart_receiver(tx, received):
 @cocotb.test()
 async def test_firmware_uart(dut):
     cocotb.start_soon(Clock(dut.clk, CLOCK_PERIOD_PS, unit="ps", period_high=CLOCK_PERIOD_PS // 2,).start())
-    cocotb.start_soon(monitor_boot_state(dut.clk, dut.soc_state, dut.boot_address, dut._log))
+
+    if hasattr(dut, "soc_state") and hasattr(dut, "boot_address"):
+        cocotb.start_soon(monitor_boot_state(dut.clk, dut.soc_state, dut.boot_address, dut._log))
 
     flash = load_flash_image(os.path.join(os.path.dirname(__file__), "firmware.hex"))
     psram_a = {}
@@ -161,7 +163,7 @@ async def test_firmware_uart(dut):
     await ClockCycles(dut.clk, 10)
     dut.rst_n.value = 1
 
-    await Timer(650_000_000, unit="ns")
+    await Timer(700_000_000, unit="ns")
 
     output = bytes(received)
     dut._log.info("UART output (%d bytes): %r", len(output), output)

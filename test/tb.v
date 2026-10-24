@@ -28,8 +28,10 @@ module tb ();
   wire spi_sclk = uio_out[3];
   wire ram_a_cs_n = uio_out[6];
   wire ram_b_cs_n = uio_out[7];
+`ifndef GL_TEST
   wire [3:0] soc_state = user_project.soc.state;
   wire [15:0] boot_address = user_project.soc.boot_address;
+`endif
 `ifdef GL_TEST
   wire VPWR = 1'b1;
   wire VGND = 1'b0;
