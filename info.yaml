@@ -23,12 +23,12 @@ project:
 # This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
 pinout:
   # Inputs
-  ui[0]: "gpio_in0"
+  ui[0]: "gpio_in0 / int0"
   ui[1]: "rx"
-  ui[2]: "gpio_in1"
-  ui[3]: "gpio_in2"
-  ui[4]: "gpio_in3"
-  ui[5]: "gpio_in4"
+  ui[2]: "gpio_in1 / int1"
+  ui[3]: "gpio_in2 / int2"
+  ui[4]: "gpio_in3 / int3"
+  ui[5]: "gpio_in4 / int4"
   ui[6]: "gpio_in5"
   ui[7]: "gpio_in6"
 
@@ -47,8 +47,8 @@ pinout:
   uio[1]: "MOSI"
   uio[2]: "MISO"
   uio[3]: "Serial clock"
-  uio[4]: ""
-  uio[5]: ""
+  uio[4]: "SD2"
+  uio[5]: "SD3"
   uio[6]: "RAM A chip select"
   uio[7]: "RAM B chip select"
 
