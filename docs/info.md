@@ -51,11 +51,11 @@ RAM A; RAM B remains inactive. Connections follow the
 
 ### Overview
 
-Phoenix is an 8-bit architecture with 16-bit memory and io addressing. The architecture has dedicated memory and io address spaces. Instructions and data are mixed.
+Phoenix is an 8-bit architecture with 16-bit memory and I/O addressing. The architecture has dedicated memory and I/O address spaces. Instructions and data are mixed.
 
 ### Instruction encoding
 
-An instruction has a fixed size of 24-bit. An instruction can contain 2 registers and an 8-bit intermediate value or a 16-bit intermediate value.
+An instruction has a fixed size of 24-bit. It can contain 2 registers and an 8-bit intermediate value or a 16-bit intermediate value.
 
 ```text
 00000000 0000 0000 00000000
@@ -64,33 +64,33 @@ An instruction has a fixed size of 24-bit. An instruction can contain 2 register
            └ second register
 ```
 
-| Field | Width | Encoding |
-| --- | ---: | --- |
-| Instuction opcode | 8 bits | `00000000` |
-| Second register | 4 bits | `0000` |
-| First register | 4 bits | `0000` |
-| 8-bit Intermediate | 8 bits | `00000000` |
+| Field | Width |
+| --- | --- |
+| Instuction opcode | 8 bits |
+| Second register | 4 bits |
+| First register | 4 bits |
+| 8-bit Intermediate | 8 bits |
 
 To store a 16-bit intermediate value you need to combine the register section and the 8-bit intermediate section.
 
 ### Halting execution
 
-To halt execution, you must either jump to `0xffff` (the end of the memory space) or set the HALT flag.
+To halt execution, you can either jump to `0xffff` (the end of the memory space) or set the HALT flag.
 
 ### Registers
 
 #### General purpose registers
 
-There are 16 general purpose registers with a size of 8-bit. Those are named R0 – R15. Those registers can be used with all instructions accepting a register.
+There are 16 general purpose registers with a size of 8-bit. Those are named R0 – R15. The registers can be used with all instructions accepting a register.
 
 #### Index registers
 
-There are 2 index registers with a size of 16 bits. These are called A and B. An index register consists of 2 general purpose registers. These registers are encoded in the instruction opcode instead of the register part.
+There are 2 index registers with a size of 16 bits, which are called A and B. An index register consists of 2 general purpose registers. These registers are encoded in the instruction opcode instead of the register part.
 
 - Index register A consists of r0 (low byte) and r1 (high byte).
 - Index register B consists of r2 (low byte) and r3 (high byte).
 
-The index registers are used to store indexes either in memory or in IO space.
+The index registers are used to store indexes either in memory or in I/O space.
 
 #### Special purpose registers
 
@@ -98,10 +98,12 @@ The index registers are used to store indexes either in memory or in IO space.
 
 The flags register stores state the architecture uses to make decisions. The flags register is 4-bits big.
 
-- Bit 0: ZERO
-- Bit 1: EQ (Equals)
-- Bit 2: OV (Overflow)
-- Bit 3: HALT
+| Bit | Flag |
+| --- | --- |
+| Bit 0 | ZERO |
+| Bit 1 | EQ (Equals) |
+| Bit 2 | OV (Overflow) |
+| Bit 3 | HALT |
 
 ##### Interrupt handler
 
@@ -128,7 +130,7 @@ The flags register stores state the architecture uses to make decisions. The fla
 
 ### GPIO
 
-A GPIO port has 8 inputs and 8 outputs. Simply writing to the io address will output the value written to the GPIO port. Reading the io address returns the state of the input pins.
+A GPIO port has 8 inputs and 8 outputs. Simply writing to the I/O address will output the value written to the GPIO port. Reading the I/O address returns the state of the input pins.
 
 ### Interrupts
 
@@ -138,9 +140,9 @@ When an interrupt is triggered, the core jumps to the address stored in the inte
 
 #### Interrupt controller
 
-The interrupt controller contains an interrupt mask that can be set by writing to the IO device. The number of the bit in the interrupt mask corresponds to the interrupt ID you want to mask / unmask. Setting a bit to 1 unmasks the interrupt.
+The interrupt controller contains an interrupt mask that can be set by writing to the I/O device. The number of the bit in the interrupt mask corresponds to the interrupt ID you want to mask / unmask. Setting a bit to 1 unmasks the interrupt.
 
-During the execution of the interrupt handler, the handler can read the io device to get a mask of the interrupts triggering the interrupt.
+During the execution of the interrupt handler, the handler can read the I/O device to get a mask of the interrupts triggering the interrupt.
 
 #### Interrupt map
 
@@ -157,22 +159,28 @@ During the execution of the interrupt handler, the handler can read the io devic
 
 ### Timer
 
-The timer consists of 3 io devices. The prescaler io device is used to set the prescaler, which can change the rate at which the timer counts. The timer will count when `prescaler == prescaler_count`. The compare io device is used to set the value to which the timer will compare. The timer will trigger the desired action if `compare == timer_count`. If the prescaler is disabled, the timer will count with the unmodified core clock.
+The timer consists of 3 I/O devices. The prescaler I/O device is used to set the prescaler, which can change the rate at which the timer counts. The timer will count when `prescaler == prescaler_count`. The compare I/O device is used to set the value to which the timer will compare. The timer will trigger the desired action if `compare == timer_count`. If the prescaler is disabled, the timer will count with the unmodified core clock.
 
-The control io device is used to control the functions of the timer. The following bits can be used:
+The control I/O device is used to control the functions of the timer. 
 
-- Bit 0: if set, timer is enabled.
-- Bit 1: if set, prescaler is enabled.
-- Bit 2: if set, the timer triggers interrupts.
-- Bit 3: if set, the timer pulses the timer output pin.
-- Bit 4: when set, the timer toggles the timer output pin.
+The following bits can be used:
+
+| Bit | Functions |
+| --- | --- |
+| Bit 0 | if set, timer is enabled |
+| Bit 1 | if set, prescaler is enabled |
+| Bit 2 | if set, the timer triggers interrupts |
+| Bit 3 | if set, the timer pulses the timer output pin |
+| Bit 4 | if set, the timer toggles the timer output pin |
 
 
 ### UART interface
 
-The UART interface is used for serial communication. It uses 8N1 framing (8 data bits, no parity, 1 stop bit). The default baud rate is 115200.
+The UART interface is used for serial communication.
 
-The UART interface has 5 io devices:
+It uses 8N1 framing (8 data bits, no parity, 1 stop bit). The default baud rate is 115200.
+
+The UART interface has 5 I/O devices:
 
 | Address | Name | Description |
 | --- | --- | --- |
@@ -200,8 +208,10 @@ Only the last received byte is stored. New data overwrites the previous byte.
 
 The status register at `0xf002` contains the following bits:
 
-- Bit 0: If set, the transmitter is busy.
-- Bit 1: If set, a received byte is available.
+| Bit | Function |
+| --- | --- |
+| Bit 0 | If set, the transmitter is busy |
+| Bit 1 | If set, a received byte is available |
 
 #### Baud rate
 
@@ -304,7 +314,7 @@ The scaler is calculated as follows:
 
 - **`mov <register>, <register>`**
 
-  Mov the right register into the left register.
+  Move the right register into the left register.
 
 - **`lod <register>, <intermediate>`**
 
@@ -312,11 +322,11 @@ The scaler is calculated as follows:
 
 - **`out <index>, <register>`**
 
-  Save register into io space at index.
+  Save register into I/O space at index.
 
 - **`inp <register>, <index>`**
 
-  Load value stored at index in io space into register.
+  Load value stored at index in I/O space into register.
 
 - **`wtr <index>, <register>`**
 
