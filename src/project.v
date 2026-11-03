@@ -9,6 +9,8 @@ module tt_um_toxicfox_phoenix (
     input  wire       clk,      // clock
     input  wire       rst_n     // reset_n - low to reset
 );
+    (* keep *) branding branding_i();
+
     wire reset_request = !rst_n || !ena;
     /* verilator lint_off SYNCASYNCNET */
     (* async_reg = "true" *) reg [1:0] reset_pipe;
@@ -2000,4 +2002,3 @@ module uart_rx (
         end
     end
 endmodule
-

@@ -1,0 +1,19 @@
+# LEF file generated for branding
+VERSION 5.8 ;
+NAMESCASESENSITIVE ON ;
+DIVIDERCHAR "/" ;
+BUSBITCHARS "[]" ;
+UNITS
+   DATABASE MICRONS 1000 ;
+END UNITS
+
+MACRO branding
+   CLASS BLOCK ;
+   FOREIGN branding 0 0 ;
+   SIZE 46.000 BY 16.000 ;
+   SYMMETRY X Y ;
+   OBS
+      LAYER met4 ;
+         RECT 0 0 46.000 16.000 ;
+   END
+END branding

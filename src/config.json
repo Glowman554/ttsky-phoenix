@@ -31,6 +31,19 @@
   "//": "https://tinytapeout.com/faq/#how-can-i-map-an-additional-external-clock-to-one-of-the-gpios",
   "CLOCK_PORT": "clk",
 
+  "MACROS": {
+    "branding": {
+      "instances": {
+        "branding_i": {
+          "location": [285.88, 4],
+          "orientation": "N"
+        }
+      },
+      "gds": ["dir::../macros/branding.gds"],
+      "lef": ["dir::../macros/branding.lef"]
+    }
+  },
+
   "//": "Configuration docs: https://librelane.readthedocs.io/en/latest/reference/configuration.html",
 
   "//": "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
