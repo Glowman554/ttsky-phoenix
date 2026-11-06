@@ -1,13 +1,69 @@
-__________ .__                             .__          
-\______   \|  |__    ____    ____    ____  |__|___  ___ 
- |     ___/|  |  \  /  _ \ _/ __ \  /    \ |  |\  \/  / 
- |    |    |   Y  \(  <_> )\  ___/ |   |  \|  | >    <  
- |____|    |___|  / \____/  \___  >|___|  /|__|/__/\_ \ 
-                \/              \/      \/           \/ 
-What will you create?
-Copyright (c) 2026 ToxicFox (https://toxicfox.de)
-
-Example project (interrupts, timer, uart, functions)
-
-
-
+PASS nop
+PASS lod
+PASS mov
+PASS lad_A
+PASS lad_B
+PASS add_reg
+PASS add_imm
+PASS sub_reg
+PASS sub_imm
+PASS nad_reg
+PASS nad_imm
+PASS nor_reg
+PASS nor_imm
+PASS ado_reg
+PASS ado_imm
+PASS ado_reg_disabled
+PASS ado_imm_disabled
+PASS sbo_reg
+PASS sbo_imm
+PASS sbo_reg_disabled
+PASS sbo_imm_disabled
+PASS cmp_reg
+PASS cmp_imm
+PASS cfg
+PASS wfg
+PASS rfg
+PASS jnz_A
+PASS jnz_B
+PASS jnz_imm
+PASS jzr_A
+PASS jzr_B
+PASS jzr_imm
+PASS jeq_A
+PASS jeq_B
+PASS jeq_imm
+PASS jnq_A
+PASS jnq_B
+PASS jnq_imm
+PASS jof_A
+PASS jof_B
+PASS jof_imm
+PASS jno_A
+PASS jno_B
+PASS jno_imm
+PASS jmp_A
+PASS jmp_B
+PASS jmp_imm
+PASS ldr_A
+PASS ldr_B
+PASS wtr_A
+PASS wtr_B
+PASS out_A
+PASS out_B
+PASS inp_A
+PASS inp_B
+PASS lsp_A
+PASS lsp_B
+PASS lsp_imm
+PASS rsp_A
+PASS rsp_B
+PASS put_imm
+PASS put_reg
+PASS pop
+PASS lih_A
+PASS lih_B
+PASS lih_imm
+PASS int
+PASS ire
+DONE
