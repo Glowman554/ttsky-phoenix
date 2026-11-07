@@ -1,4 +1,8 @@
 `default_nettype none
+(* blackbox *) (* keep *)
+module branding ();
+endmodule
+
 module tt_um_toxicfox_phoenix (
     input  wire [7:0] ui_in,    // Dedicated inputs
     output wire [7:0] uo_out,   // Dedicated outputs
@@ -9,6 +13,7 @@ module tt_um_toxicfox_phoenix (
     input  wire       clk,      // clock
     input  wire       rst_n     // reset_n - low to reset
 );
+    (* keep *) branding branding_art ();
     wire reset_request = !rst_n || !ena;
     /* verilator lint_off SYNCASYNCNET */
     (* async_reg = "true" *) reg [1:0] reset_pipe;
